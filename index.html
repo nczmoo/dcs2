@@ -14,6 +14,9 @@
 		.auto {
 			background-color: green;
 		}
+		.center {
+			text-align: center;
+		}
 		.col {
 			float: left;
 			width:100px;
@@ -47,6 +50,7 @@
 	</style>
 </head>
 <body>
+	<div class="center">Gold: <span id='gold'></span></div>
 	<div id="slot_menu">
 		<div>
 			<button id='auto_spin'>Auto</button>
@@ -59,6 +63,7 @@
 	</div>
 	<div>
 		<div class="side">
+			<div id="player_name" class="'center"></div>
 			<div id="player_slots">
 
 			</div><div class="health">
@@ -67,6 +72,7 @@
 
 			</div>
 		</div><div class="side">
+			<div id="enemy_name" class="'center"></div>
 			<div id="enemy_slots">
 			
 			</div><div class="health">
@@ -76,7 +82,7 @@
 			</div>
 		</div>
 		
-	</div><div id="status">
+	</div><div id="journal" class="center">
 
 	</div>
 

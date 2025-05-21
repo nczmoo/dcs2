@@ -2,10 +2,11 @@ class Game{
 	auto_spinning = false;
 	config = new Config();
 	credits = 1;
-	enemy = new Character(false, 100);
-	enemy_slots = new Slots(false, 'attack', 'defend', 'heal', 'attack');
+	enemy = new Character(false, 10, 'a rat');
+	enemy_slots = new Slots(false, 'attack', 'defend', 'attack', 'attack');
+	gold = 0;
 	paused = false;
-	player = new Character(true, 100);	
+	player = new Character(true, 100, 'player');	
 	slots = new Slots(true, 'attack', 'defend', 'attack', 'rest');
 	
 
@@ -70,6 +71,9 @@ class Game{
 			this.process_pay(enemy_pay, false);
 		}
 		this.player.tick(this.credits);
-		this.enemy.tick(this.credits)
+		this.enemy.tick(this.credits);
+		if (!this.enemy.alive){
+			this.enemy = new Character(false, 10, 'a rat');
+		}
 	}
 }

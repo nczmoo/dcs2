@@ -3,7 +3,13 @@ class UI{
 	constructor(){
 
 	}
+
+	clear_log(){
+		$("#player_log").html("");
+		$("#enemy_log").html("");
+	}
 	refresh(){
+		$("#gold").html(game.gold);
 		this.show_reels(game.slots, "player_slots");
 		this.show_reels(game.enemy_slots, "enemy_slots");
 		//this.show_character(game.player, "player");
@@ -33,10 +39,12 @@ class UI{
 				}
 			}
 		}
+		$("#enemy_health").attr("max", game.enemy.max_health);
+
 	}
 
 	show_character(character, id){
-		
+		$("#" + id + "_name").html(character.name);
 		let txt = "<div>Health: " + character.health + "/" + character.max_health + " </div>"
 			+ "<div> Energy: " + character.energy  + "</div>"
 			+ "<div> <span id='" + id + "-defense'>Defense: " + character.defense + "</span>"
@@ -57,6 +65,9 @@ class UI{
 		
 		$("#" + id).html(txt);
 	}
+	update_journal(msg){
+		$("#journal").html("<div>" + msg + "</div>" + $("#journal").html() );
+	}
 
 	update_log(msg, is_player){
 		let id = "enemy_log";
@@ -65,4 +76,5 @@ class UI{
 		}
 		$("#" + id).html("<div>" + msg + "</div>" + $("#" + id).html() );
 	}
+
 }

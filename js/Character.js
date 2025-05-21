@@ -8,7 +8,8 @@ class Character{
 	is_player = null;
 	max_energy = 100;
 	max_health = null;
-
+	name = null;
+	reward = { gold: 0 };
 	skills = {
 		attack: 1,
 		defend: 1,
@@ -16,10 +17,12 @@ class Character{
 		rest: 1,
 	}
 
-	constructor(is_player, max_health){
+	constructor(is_player, max_health, name){
 		this.is_player = is_player;
 		this.health = max_health;
 		this.max_health = max_health;
+		this.name = name;
+		this.reward.gold = randNum(1, 3);
 	}
 
 	defend(quantity){
@@ -30,6 +33,9 @@ class Character{
 	die(){
 		this.alive = false;
 		ui.update_log("You died!", this.is_player);
+		ui.clear_log();
+		ui.update_journal("you killed " + this.name + " and received " + this.reward.gold + " gold." )
+		game.gold += this.reward.gold;
 		if (this.is_player){
 			alert("You died!");
 			game.paused = true;
