@@ -6,8 +6,8 @@ class UI{
 	refresh(){
 		this.show_reels(game.slots, "player_slots");
 		this.show_reels(game.enemy_slots, "enemy_slots");
-		this.show_character(game.player, "player");
-		this.show_character(game.enemy, 'enemy');
+		//this.show_character(game.player, "player");
+		//this.show_character(game.enemy, 'enemy');
 		$("#credits").html(game.credits);
 		$("#auto_spin").removeClass("auto");
 		if (game.auto_spinning){
@@ -20,12 +20,27 @@ class UI{
 		} else if (game.credits >= game.config.max_credits){
 			$("#credit_more").prop('disabled', true);
 		}
+		let characters = ['player', 'enemy'];
+		let hiding = ['defense', 'healing'];
+		for (let character of characters){
+			this.show_character(game[character], character);
+			for (let hide of hiding){	
+				if ($("#" + character + "-" + hide).hasClass('hidden')){
+					$("#" + character + "-" + hide).removeClass('hidden');
+				}				
+				if (game[character][hide] < 1){
+					$("#" + character + "-" + hide).addClass('hidden');
+				}
+			}
+		}
 	}
 
 	show_character(character, id){
+		
 		let txt = "<div>Health: " + character.health + "/" + character.max_health + " </div>"
 			+ "<div> Energy: " + character.energy  + "</div>"
-			+ "<div> Defense: " + character.defense + " Healing: " + character.healing + " / spin </div>"
+			+ "<div> <span id='" + id + "-defense'>Defense: " + character.defense + "</span>"
+			+ "<span id='" + id + "-healing'>Healing: " + character.healing + " / spin</span></div>"
 		$("#" + id + "_health").val(character.health);
 		$("#" + id).html(txt);
 	}

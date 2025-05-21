@@ -21,6 +21,9 @@
 		.dmg {
 			color: red;
 		}
+		.hidden {
+			display: none;
+		}
 		.row {
 			float: left;
 			clear: both;
@@ -30,28 +33,34 @@
 			width: 50%;
 			text-align:center;
 		}
-		#enemy, #player, #slot_menu, .health {
+		#enemy, #player, .health {
 			float: left;
 			clear: both;
 			margin-top: 30px;
 			text-align: center;
 		}
+
+		#slot_menu {
+			padding-top: 40px;
+			text-align: center;
+		}
 	</style>
 </head>
 <body>
+	<div id="slot_menu">
+		<div>
+			<button id='auto_spin'>Auto</button>
+			<button id='spin'>Spin</button>
+		</div><div>
+			<button id="credit_less" class="credit">-</button>
+			Credits: <span id="credits"></span>
+			<button id="credit_more" class="credit">+</button>
+		</div>
+	</div>
 	<div>
 		<div class="side">
 			<div id="player_slots">
 
-			</div><div id="slot_menu">
-				<div>
-					<button id='auto_spin'>Auto</button>
-					<button id='spin'>Spin</button>
-				</div><div>
-					<button id="credit_less" class="credit">-</button>
-					Credits: <span id="credits"></span>
-					<button id="credit_more" class="credit">+</button>
-				</div>
 			</div><div class="health">
 				<progress id="player_health" max="100" value="70"></progress>
 			</div><div id="player"></div><div id="player_log">
