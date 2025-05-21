@@ -8,6 +8,38 @@ class UI{
 		$("#player_log").html("");
 		$("#enemy_log").html("");
 	}
+
+	display_inventory(){
+		let txt = "";
+		for (let potion in game.inventory.potions){
+			console.log(potion, game.inventory);
+			let count = game.inventory.potions[potion];
+			txt += "<button id='drink-" + potion + "' class='drink'>" + potion + " potion (" + count + ")</button>";
+		}
+		$("#inventory").html(txt);
+		for (let potion in game.inventory.potions){
+			let count = game.inventory.potions[potion];
+			if (count < 1){
+				$("#drink-" + potion).prop('disabled', true);
+			}
+		}
+	}
+
+	display_store(){
+		let txt = "";
+		for (let item in game.for_sale){
+			let name = item.split('_').join(' ');
+			let cost = game.for_sale[item];
+			txt += "<div><button id='buy-" + item + "' class='buy'>buy " + name + " for " + cost + " gold</button>";
+		}
+		$("#store").html(txt);
+		for (let item in game.for_sale){			
+			let cost = game.for_sale[item];
+			if (cost > game.gold){
+				$("#buy-" + item ).prop('disabled', true);
+			}
+		}
+	}
 	refresh(){
 		$("#gold").html(game.gold);
 		this.show_reels(game.slots, "player_slots");
@@ -40,7 +72,8 @@ class UI{
 			}
 		}
 		$("#enemy_health").attr("max", game.enemy.max_health);
-
+		this.display_inventory();
+		this.display_store();
 	}
 
 	show_character(character, id){
@@ -51,6 +84,11 @@ class UI{
 			+ "<span id='" + id + "-healing'>Healing: " + character.healing + " / spin</span></div>"
 		$("#" + id + "_health").val(character.health);
 		$("#" + id).html(txt);
+	}
+	show(what){
+		$(".window").addClass('hidden');
+		$("#" + what).removeClass('hidden');
+
 	}
 
 	show_reels(slot_machine, id){

@@ -42,6 +42,8 @@
 			margin-top: 30px;
 			text-align: center;
 		}
+		progress::-webkit-progress-value {background-color: #ff0000 !important;}
+
 
 		#slot_menu {
 			padding-top: 40px;
@@ -51,42 +53,58 @@
 </head>
 <body>
 	<div class="center">Gold: <span id='gold'></span></div>
-	<div id="slot_menu">
-		<div>
-			<button id='auto_spin'>Auto</button>
-			<button id='spin'>Spin</button>
+	
+	<div id="dungeon" class="window">
+		<div class="center"> 
+			<button id='show-map' class="show">map</button>
+		</div>	
+		<div id="slot_menu">
+			<div>
+				<button id='auto_spin'>Auto</button>
+				<button id='spin'>Spin</button>
+			</div><div>
+				<button id="credit_less" class="credit">-</button>
+				Credits: <span id="credits"></span>
+				<button id="credit_more" class="credit">+</button>
+			</div>
+		</div><div id="inventory" class="center">
+
 		</div><div>
-			<button id="credit_less" class="credit">-</button>
-			Credits: <span id="credits"></span>
-			<button id="credit_more" class="credit">+</button>
-		</div>
-	</div>
-	<div>
-		<div class="side">
-			<div id="player_name" class="'center"></div>
-			<div id="player_slots">
+			<div class="side">
+				<div id="player_name" class="'center"></div>
+				<div id="player_slots">
 
-			</div><div class="health">
-				<progress id="player_health" max="100" value="70"></progress>
-			</div><div id="player"></div><div id="player_log">
+				</div><div class="health">
+					<progress id="player_health" class='health' max="100" value="70"></progress>
+				</div><div id="player"></div><div id="player_log">
 
+				</div>
+			</div><div class="side">
+				<div id="enemy_name" class="'center"></div>
+				<div id="enemy_slots">
+				
+				</div><div class="health">
+					<progress id="enemy_health"  max="100" value="70"></progress>
+				</div><div id="enemy"></div><div id='enemy_log'>
+
+				</div>
 			</div>
-		</div><div class="side">
-			<div id="enemy_name" class="'center"></div>
-			<div id="enemy_slots">
 			
-			</div><div class="health">
-				<progress id="enemy_health" max="100" value="70"></progress>
-			</div><div id="enemy"></div><div id='enemy_log'>
+		</div><div id="journal" class="center">
 
-			</div>
 		</div>
-		
-	</div><div id="journal" class="center">
-
+	</div><div id="map" class="window center hidden">
+		<div>
+			<button id="show-dungeon" class="show">dungeon</button>
+		</div><div>
+			<button id="show-town" class="show">town</button>
+		</div>
+	</div><div id="town" class="window center hidden">
+		<div class="center"> 
+			<button id='show-map' class="show">map</button>
+		</div>	
+		<div id="store"></div>
 	</div>
-
-
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 	<script src='https://code.jquery.com/jquery-3.6.0.js'></script>
 	<script src='js/UI.js'></script>

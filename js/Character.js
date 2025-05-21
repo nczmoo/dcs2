@@ -54,7 +54,6 @@ class Character{
 		}
 		
 		this.skills[skill] ++;
-		console.log(this.is_player, this.skills[skill]);
 		ui.update_log("<b>You gained a level in " + skill + ". (" + this.skills[skill] + ")</b>", this.is_player);
 	}
 
